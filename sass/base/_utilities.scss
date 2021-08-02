@@ -1,0 +1,25 @@
+//these are SIMPLE FILES THAT HAS FEW CSS CODES FOR SPECIFIC 1 MAIN GOAL. 
+//hence they enhance reusability of eements in our code across the project
+
+.u-center-text { text-align: center !important; } 
+
+.u-margin-bottom-small { margin-bottom: 1.5rem !important; }
+.u-margin-bottom-medium {
+	margin-bottom: 4rem !important;
+
+
+	@include respond(tab-port) {// width <=900px
+		margin-bottom: 3rem !important;    //1rem = 8px, 8/16 = 50%
+	}
+}
+
+.u-margin-bottom-big {
+	margin-bottom: 8rem !important;
+
+	@include respond(tab-port) {// width <=900px
+		margin-bottom: 5rem !important;   //1rem = 8px, 8/16 = 50%
+	}
+}
+
+.u-margin-top-big {margin-top: 8rem !important; }
+.u-margin-top-huge {margin-top: 10rem !important; }

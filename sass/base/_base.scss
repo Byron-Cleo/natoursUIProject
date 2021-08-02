@@ -1,0 +1,54 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	//this defines what 1rem is. It defines for our entire page
+	//as usual 1em is always the default web browser font-size or the one you've defined
+	//As USUALL 1em = 16px, 
+	//OUR WEBSITE BUILD ON 1rem = 10px = 62.5%,(10/16) = 0.625em
+	font-size: 62.5%;
+
+
+	// @include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+	// 		top: 3rem;
+	// 		right: 3rem;
+	// }
+
+
+	@include respond(tab-land) {//width  <=1200px
+		font-size: 56.25%;  //1 rem = 9px, 9/16 = 56.25%  
+	}
+
+	@include respond(tab-port) {// width <=900px
+		font-size: 50%;    //1rem = 8px, 8/16 = 50%
+	}
+
+	// @include respond(big-desktop) {// >=1800px
+	// 	font-size: 75%;   //1rem = 12px, 12/16 = 75%
+	// }
+
+	
+
+	
+}
+
+body {
+	box-sizing: border-box;//this a universal property to indicate that the total width and height will always appear as difined. 
+							//BOTH padding and margin are all included in the defined dimentions NO-MATTER WHAT
+	padding: 3rem;
+
+	@include respond(tab-port) {// width <=900px
+		padding: 0;    //1rem = 8px, 8/16 = 50%
+	}
+}
+
+
+::selection {
+	background-color: $color-primary;
+	color: $color-white;
+}

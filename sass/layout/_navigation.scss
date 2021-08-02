@@ -1,0 +1,177 @@
+.navigation {
+
+	&__checkbox {
+		display: none;
+	}
+
+
+	&__button {
+		background-color: $color-white;
+		height: 7rem;
+		width: 7rem;
+		position: fixed;
+		top: 6rem;
+		right: 6rem;
+		border-radius: 50%;
+		z-index: 2000;
+
+		box-shadow: 0 1rem 3rem rgba($color-black, .1);
+		text-align: center; //this to center the strokes for navigation
+		cursor: pointer;
+
+		@include respond(tab-port) {// width <=900px
+			top: 4rem;
+			right: 4rem;    //1rem = 8px, 8/16 = 50%
+		}
+
+		@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+			top: 3rem;
+			right: 3rem;
+		}
+	}
+
+
+	&__background {
+		height: 6rem;
+		width: 6rem;
+		border-radius: 50%;
+		position: fixed; // it is the same as position absolute as you ca specify where to place but then its fixed once defined. VERY IMPORTANT FOR THE Z-INDEX PROPERTY BELOW
+		top: 6.5rem;
+		right: 6.5rem;
+		background-image: radial-gradient($color-primary-light, $color-primary-dark);
+		z-index: 1000; //the higher the number the better so that it is placed on the top most aboveevery element. Also only works when a POSITION as defined. Here the fixed value.
+		
+		transition: transform .8s cubic-bezier(.68, -0.55,0.265,1.15); //activates the defined animation down there
+		//transform: scale(80);//this to animate the background to show and hide at the same time when checkbox is clicked
+
+		@include respond(tab-port) {// width <=900px
+			top: 4.5rem;
+			right: 4.5rem;    //1rem = 8px, 8/16 = 50%
+		}
+
+		@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+			top: 3.5rem;
+			right: 3.5rem;
+		}
+	}
+
+
+	&__nav {
+		height: 100vh;//these two values will make the element cover the whole window by default
+						//since they 100% viewport. & width is removed to make the links invisblle
+		position: fixed;
+		top: 0;
+		left: 0; //this is important as it also dictates direction of animation
+		z-index: 1500;
+
+		opacity: 0;//to make the links compeletely dissappear
+		width: 0;
+		transition: all .8s cubic-bezier(.86,1.13,1,-0.15);
+	}
+
+
+	&__list {
+		position: absolute;
+		top: 50%; 
+		left: 50%;
+		transform: translate(-50%, -50%);//this to animate the lists when the button is checked to appera and dissapper TO THE ENTER OF THE VIEWPORT
+
+		list-style: none;
+		text-align: center;
+		width:100%
+	}
+
+
+	&__item {
+		margin: 1rem;
+
+	}
+
+
+	&__link {
+		&:link,
+		&:visited {
+			display: inline-block;
+			font-size: 3rem;
+			font-weight: 300;
+			color: $color-white;
+			text-decoration: none;
+			text-transform: uppercase;
+			background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+			background-size: 220%;
+			transition: all .4s;//activates the animation effect
+
+			span {
+				display:inline-block;
+				margin-right: 1.5rem;
+			}
+		}
+
+		&:hover,
+		&:active {
+			background-position: 100%;
+			color: $color-primary;
+			transform: translateX(1rem);
+		}
+	}
+
+	&__checkbox:checked ~ &__background {
+		transform: scale(80);
+	}
+
+	&__checkbox:checked ~ &__nav {
+		opacity: 1;//to make the links to appear back
+		width: 100%;
+	}
+
+
+	//ICON
+	&__icon {
+		position: relative;
+		margin-top: 3.5rem; //to bringthe strokes in the center of the button.
+
+		&,
+		&::before,
+		&::after {
+			width: 3rem;
+			height: 2px;// will be constant no matter what since its very small
+			background-color: $color-grey-dark-3;
+			display: inline-block;
+
+		}
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+		}
+
+		&::before { top: -.8rem; }
+		&::after  { top: .8rem; }
+	}
+
+	&__button:hover &__icon::before {
+		top: -1rem;
+	}
+
+	&__button:hover &__icon::after {
+		top: 1rem;
+	}
+
+	&__checkbox:checked + &__button &__icon {
+		background-color: transparent;
+	}
+
+	&__checkbox:checked + &__button &__icon::before {
+		top: 0;
+		transform: rotate(45deg);
+	}
+
+	&__checkbox:checked + &__button &__icon::after {
+		top: 0;
+		transform: rotate(-45deg);
+		}
+
+
+}

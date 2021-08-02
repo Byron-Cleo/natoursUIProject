@@ -1,0 +1,21 @@
+.bg-video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -1;//this to push the video behind so the button and heading could be visible
+	opacity: .15; //this is to make a light bakground transparent color
+	overflow: hidden;
+	
+
+	&__content {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;//WORKS WITH html elements. special property to AUTOMATICALLY CUT OFF those parts that overlap the parent element.
+	}
+
+
+
+
+}

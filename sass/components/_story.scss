@@ -1,0 +1,90 @@
+.story {
+	width: 75%;
+	margin: 0 auto;
+	box-shadow: 0 3rem 6rem rgba($color-black, .1);
+	background-color: rgba($color-white, .6);// this increase the opacity of the story to make it more visible
+	border-radius: 3px;
+	padding: 6rem;
+	padding-left: 9rem; //tho increase the padding on the left side 6+9
+	font-size: $default-font-size;
+	transform: skewX(-12deg);
+
+	@include respond(tab-port) {// width <=900px
+		width: 100%;    //1rem = 8px, 8/16 = 50%
+		padding: 4rem;
+		padding-left: 7rem; //tho increase the padding on the left side 6+9
+	}
+
+
+	@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+		transform: skewX(0);
+	}
+
+	&__shape {
+		width: 15rem;
+		height: 15rem;
+		//background-color: orangered;
+		float: left;
+		
+		transform: translateX(-3rem) skewX(12deg);//the BEST way to move around element that is fluid is by using A TRANSFORM not margin or anything else 
+		position: relative;
+		overflow: hidden;
+		border-radius: 50%;
+
+		@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+			-webkit-clip-path: circle(50% at 50% 50%);// clip-path defining a circle shape
+			clip-path: circle(50% at 50% 50%);
+			//shape-outside property defines where and how the text content flows around the element 
+			-webkit-shape-outside: circle(50% at 50% 50%); //for safari and chrome browser 
+			shape-outside: circle(50% at 50% 50%); //this property only is functional when floated as defined above and has defined width and height. VERY DEMANDING PROPERTY
+			border-radius: none; //for mozilla
+			
+		}
+
+		@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+			transform: translateX(-3rem) skewX(0);
+		}
+	}
+
+	&__img {
+		height: 100%;//IMPPORTANT as image is defined in percentage to COVER THE WHOLE ELEMENT 
+		transform: translateX(-4rem) scale(1.4); //this the initial state when hovered out(zoomed out)
+		backface-visibility: hidden; 
+		transition: all .5s;
+	}
+
+	&__text {
+		transform: skewX(12deg); 
+
+		@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+			transform: skewX(0);
+		}
+
+	}
+
+	&__caption {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, 20%); // this is to bring the name captioncenter to the center of the circle.
+		color: $color-white;
+		text-transform: uppercase;
+		font-size: 1.7rem;
+		text-align: center;
+		opacity: 0; //this is the initial state of the caption before hover animation effect occurs
+		transition: all .5s;
+		backface-visibility: hidden;
+
+	}
+
+	&:hover &__caption {
+		opacity: 1;
+		transform: translate(-50%, -50%);
+	}
+
+	&:hover &__img {
+		transform: translateX(-4rem) scale(1);//animation when hovered(zoomed in)
+		backface-visibility: hidden;
+		filter: blur(3px) brightness(80%);//brightness below 100% makes it brighterand above 100% makes it darker 
+	}
+}

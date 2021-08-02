@@ -1,0 +1,94 @@
+body {
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	//font-size: 1.6rem;
+	line-height: 1.7;
+	color:$color-grey-dark;
+	
+}
+
+
+.heading-primary{
+	color: $color-white;
+	text-transform: uppercase;
+
+	backface-visibility: hidden;
+	
+	&--main{
+	display: block;
+	font-size:6rem;
+	font-weight: 400;
+	letter-spacing: 3.5rem;
+
+	/*this where the animation is invoked to work*/
+	animation-name: moveInLeft;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+
+	@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+		letter-spacing: 1rem;
+		font-family: 5rem;
+	}
+
+	/*
+	animation-delay: 3s;
+	animation-iteration-count:3;
+	animation-timing-function:ease-out e.t.c;
+	*/
+
+	}
+
+	&--sub{
+		display: block;
+		font-size:2rem;
+		font-weight: 400;
+		letter-spacing: 1.75rem;
+		margin-bottom: 6rem; 
+
+		animation: moveInRight 1s ease-out;
+
+		@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+		letter-spacing: .5rem;
+		}
+
+	}
+}
+
+.heading-secondary {
+	font-size: 3.5rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: inline-block; //this to make the color exactly reach where the text ends
+	background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+	-webkit-background-clip: text; //thisis to clip the background image defined above to be covered where the text actually exits
+	color: transparent; // this is to make the heading display the color CLIPPED BELOW it.
+	letter-spacing: .2rem; //the definition of spacing/EXPANDING the space between the letters
+	transition: all .2s; // manadatory to be ALWAYS DEFINED BEFORE ANY ANIMATIONS TO BE DEFINED
+	
+	@include respond(tab-port) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+		font-size: 3rem;
+	}
+
+	@include respond(phone) {// width <=600px : 1rem = 5px, 5/16 = 31.25%
+		font-size: 2.5rem;
+	}
+
+	&:hover {
+		transform: skewY(2deg) skewX(15deg) scale(1.1); //other properties are SCALEXorY,TRANSLATEXorY, ROTATE
+		text-shadow: .5rem .1rem 2rem rgba($color-black, .2);
+	} 
+}
+
+.heading-tertiary {
+	font-size: $default-font-size;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.paragraph {
+	font-size: $default-font-size;
+
+	&:not(:last-child) { //this defines NOT the last child paragraph to have a bottom margin
+		margin-bottom: 3rem;
+	}
+}

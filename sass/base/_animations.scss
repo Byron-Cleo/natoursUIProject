@@ -1,0 +1,50 @@
+/*there ae two specific ways of creating animations. using the TRANSITION PROPERTY and the KEYFRAMES COMPLEX way with specific intervals */
+/*this is one way of creating cool ANIMATION effects in css. it best suit to animate the opacity and transform propperties of an html element since the BROWSERS ARE BEST OPTIMAZIDED FOR*/
+/*with transform we can really achieve more animations though*/
+@keyframes moveInLeft{
+	0%{
+		opacity: 0;
+		transform:translateX(-10rem);
+	}
+
+	/*80%{
+		transform: translateX(10px);
+	}
+*/
+	100%{
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInRight{
+	0%{
+		opacity: 0;
+		transform:translateX(10rem);
+	}
+
+/*	80%{
+		transform: translateX(-10px);
+	}*/
+
+	100%{
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInButton{
+	0%{
+		opacity: 0;
+		transform:translateY(3rem);
+	}
+
+/*	80%{
+		transform: translateX(-10px);
+	}*/
+
+	100%{
+		opacity: 1;
+		transform: translate(0);
+	}
+}

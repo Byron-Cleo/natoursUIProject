@@ -1,0 +1,68 @@
+.row {
+	//the max-width property means that if the screen is large enough then the entire width will always
+	//be the one specified otherwise smaller screens less than that will ALWAYS cover the whole SCREEN
+	max-width: $grid-width;
+	// background-color: #eee;
+	margin: 0 auto;	
+	//padding: 0 1rem;
+
+	//not CSS pseudo-element function for excluding some specied DOM elements
+	&:not(:last-child) {
+		margin-bottom: $gutter-vertical;
+
+		@include respond(tab-port) {// width <=900px
+			margin-bottom: $gutter-vertical-small;    //1rem = 8px, 8/16 = 50%
+		}
+	}
+
+	@include respond(tab-port) {// width <=900px
+			max-width: 50rem;    //1rem = 8px, 8/16 = 50%
+			padding: 0 3rem;
+		}
+
+	@include clearfix; //clearfix property defined here to clear the floats created so that its height is not collapsed
+
+	//symbol ^ means begining with col-, symbol * means contains col- and symbol $ ends with col- 
+	[class^="col-"] {
+		// background-color: orangered;
+		float: left;
+
+		&:not(:last-child) {
+		margin-right: $gutter-horizontal;
+
+		@include respond(tab-port) {// width <=900px
+			margin-right: 0;    //1rem = 8px, 8/16 = 50%
+		}
+	}
+		//we are setting the with of the columns to 100% so that its just 1 column only 
+		@include respond(tab-port) {// width <=900px
+			width: 100% !important;    //1rem = 8px, 8/16 = 50%
+			margin-bottom: $gutter-vertical-small;
+		}
+
+	}
+
+	.col-1-of-2 {
+		width: calc((100% - #{$gutter-horizontal}) / 2);//the hash tag and {} braces are VERY IMPORTANT for the operation to be extecuted
+	}
+
+	.col-1-of-3 {
+		width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+	}
+
+	.col-2-of-3 {
+		width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+	}
+
+	.col-1-of-4 {
+		width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+	}
+
+	.col-2-of-4 {
+		width: calc(2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal}) ;
+	}
+
+	.col-3-of-4 {
+		width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}) ;
+	}
+}
