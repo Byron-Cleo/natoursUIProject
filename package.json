@@ -4,7 +4,7 @@
     "description": "A company online platform for displaying digital products for the world",
     "main": "index.js",
     "scripts": {
-        "start": "npm-run-all --parallel devserver watch:sass",
+        "start:dev2": "npm-run-all --parallel devserver watch:sass",
         "watch:sass": "node-sass sass/main.scss css/style.css -w",
         "devserver": "live-server",
         "start:dev": "npm-run-all --parallel devserver watch:sass",
